@@ -1,3 +1,14 @@
+# Author: Ammar Shahin
+# Date:   20/11/2019
+
+
+############################### Variables #######################################
+
+######### change here ########
+_DEPS = code.h
+_OBJ  = main.o code.o          
+##############################
+ 
 CC = gcc
 CFLAGS = -I$(IDIR)
 
@@ -6,32 +17,26 @@ ODIR = ./obj
 LDIR = ./lib
 SDIR = ./src
 
-LIBS=-lm	
-
-#change here ########
-_DEPS = code.h
-#####################
+LIBS = -lm
 
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-#change here ########
-_OBJ = main.o code.o
-#####################
- 
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+OBJ  = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-######### Rules ############
+
+#******************************* Rules *******************************
+all: app 
 
 app: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
-
-$(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
 
 git: 
 	git add .
 	git commit -a -m "updating" 
 	git push origin master
+
+$(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 .PHONY: clean
 
