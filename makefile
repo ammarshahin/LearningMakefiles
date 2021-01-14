@@ -41,4 +41,4 @@ $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+	rm -rf $(ODIR)/*.o *~ core $(INCDIR)/*~ 
